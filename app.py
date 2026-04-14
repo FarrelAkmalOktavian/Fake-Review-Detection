@@ -173,14 +173,25 @@ class AttentionLayer(tf.keras.layers.Layer):
 # ── Load Resources ─────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_resources():
+    import os
+    # Cek file ada atau tidak
+    st.write("📁 Working directory:", os.getcwd())
+    st.write("📄 Files found:", os.listdir('.'))
+    
     model = tf.keras.models.load_model(
         'lstm_attention_s4.keras',
         custom_objects={'AttentionLayer': AttentionLayer}
     )
+    st.write("✅ Model loaded")
+    
     with open('tokenizer.pkl', 'rb') as f:
         tokenizer = pickle.load(f)
+    st.write("✅ Tokenizer loaded")
+    
     with open('label_encoder.pkl', 'rb') as f:
         le = pickle.load(f)
+    st.write("✅ Label encoder loaded")
+    
     return model, tokenizer, le
 
 # ── Attention Model (for extracting weights) ───────────────────────────────────
