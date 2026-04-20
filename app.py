@@ -326,7 +326,7 @@ with st.sidebar:
 """, unsafe_allow_html=True)
 
     st.markdown("### Model Performance")
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2 = st.columns(4)
     with col1:
         st.markdown("""
 <div class="metric-card">
@@ -339,6 +339,7 @@ with st.sidebar:
     <div class="metric-label">Precision</div>
     <div class="metric-value" style="font-size:1.3rem;">93.1%</div>
 </div>""", unsafe_allow_html=True)
+    col3, col4 = st.columns(2)
     with col3:
         st.markdown("""
 <div class="metric-card" style="margin-top:8px;">
