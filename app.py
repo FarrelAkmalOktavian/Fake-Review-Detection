@@ -331,13 +331,26 @@ with st.sidebar:
         st.markdown("""
 <div class="metric-card">
     <div class="metric-label">Accuracy</div>
-    <div class="metric-value" style="font-size:1.3rem;">93.8%</div>
+    <div class="metric-value" style="font-size:1.3rem;">93.6%</div>
 </div>""", unsafe_allow_html=True)
     with col2:
         st.markdown("""
 <div class="metric-card">
+    <div class="metric-label">Precision</div>
+    <div class="metric-value" style="font-size:1.3rem;">93.1%</div>
+</div>""", unsafe_allow_html=True)
+        col3, col4 = st.columns(2)
+    with col3:
+        st.markdown("""
+<div class="metric-card" style="margin-top:8px;">
+    <div class="metric-label">Recall</div>
+    <div class="metric-value" style="font-size:1.3rem;">94.1%</div>
+</div>""", unsafe_allow_html=True)
+    with col4:
+        st.markdown("""
+<div class="metric-card" style="margin-top:8px;">
     <div class="metric-label">F1-Score</div>
-    <div class="metric-value" style="font-size:1.3rem;">93.8%</div>
+    <div class="metric-value" style="font-size:1.3rem;">93.6%</div>
 </div>""", unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -345,10 +358,10 @@ with st.sidebar:
     st.markdown("""
 <div class="sidebar-section">
 <p style="font-size:0.82rem; color:#4b5563; margin:0; line-height:1.8;">
-• Embedding (10,000 vocab, 80-dim)<br>
+• Embedding (10,000 vocab, 300-dim)<br>
 • SpatialDropout1D (0.3)<br>
-• LSTM (128 units, return_sequences)<br>
-• <strong>Attention Layer</strong><br>
+• LSTM (64 units)<br>
+• <strong>Single Attention Layer</strong><br>
 • Dense (64, ReLU) + Dropout<br>
 • Dense (1, Sigmoid)
 </p>
@@ -384,7 +397,7 @@ st.markdown("#### Paste a review below")
 example_reviews = {
     "— select an example —": "",
     "Example: Genuine review": "I bought this blender three months ago and use it almost daily. It handles frozen fruit perfectly and cleans up easily. The motor is still running strong. Highly recommend for anyone who makes smoothies regularly.",
-    "Example: Suspicious review": "This is the best product I have ever purchased. Absolutely amazing quality. Works perfectly every time. I love everything about it. Best purchase of my life. Will definitely buy again and recommend to everyone.",
+    "Example: Suspicious review": "I bought this product and this product is good. The product works well and the product quality is good. I use this product every day and the product does not have problems. This product is recommended for people who need a product like this product.",
 }
 
 example_choice = st.selectbox("Or load an example:", list(example_reviews.keys()))
