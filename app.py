@@ -175,22 +175,22 @@ class AttentionLayer(tf.keras.layers.Layer):
 def load_resources():
     import os
     # Cek file ada atau tidak
-    st.write("📁 Working directory:", os.getcwd())
-    st.write("📄 Files found:", os.listdir('.'))
+    #st.write("📁 Working directory:", os.getcwd())
+    #st.write("📄 Files found:", os.listdir('.'))
     
     model = tf.keras.models.load_model(
         'lstm_attention_s4.keras',
         custom_objects={'AttentionLayer': AttentionLayer}
     )
-    st.write("✅ Model loaded")
+    #st.write("✅ Model loaded")
     
     with open('tokenizer.pkl', 'rb') as f:
         tokenizer = pickle.load(f)
-    st.write("✅ Tokenizer loaded")
+    # st.write("✅ Tokenizer loaded")
     
     with open('label_encoder.pkl', 'rb') as f:
         le = pickle.load(f)
-    st.write("✅ Label encoder loaded")
+    # st.write("✅ Label encoder loaded")
     
     return model, tokenizer, le
 
@@ -217,7 +217,7 @@ def preprocess_text(text):
     text = re.sub(r'\d+', '', text)
     text = text.translate(str.maketrans('', '', string.punctuation))
     tokens = word_tokenize(text)
-    cleaned_tokens = [lemmatizer.lemmatize(w) for w in tokens if w not in stop_words]
+    cleaned_tokens = [lemmatizer.lemmatize(w) for w in tokens]
     return " ".join(cleaned_tokens), cleaned_tokens
 
 # ── Attention Weights (manual computation matching AttentionLayer) ─────────────
