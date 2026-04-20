@@ -326,7 +326,7 @@ with st.sidebar:
 """, unsafe_allow_html=True)
 
     st.markdown("### Model Performance")
-    col1, col2 = st.columns(4)
+    col1, col2 = st.columns(2)
     with col1:
         st.markdown("""
 <div class="metric-card">
