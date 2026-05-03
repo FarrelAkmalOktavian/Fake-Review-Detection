@@ -432,15 +432,10 @@ if analyze_btn:
 </div>
 """, unsafe_allow_html=True)
 
-        # Attention visualization
+        # Preprocessed text visual
         st.markdown("---")
-        st.markdown("#### Attention Analysis")
-        st.markdown("Words the model focused on most when making its decision:")
-
-        tab1, tab2 = st.tabs(["Word Highlights", "Attention Chart"])
-
-        with tab1:
-            render_token_pills(token_weights, is_fake)
+        st.markdown("#### Preprocessed Text")
+        st.markdown("click below to see the preprocessed result of the text")
 
         # Preprocessed text
         with st.expander("View preprocessed text"):
