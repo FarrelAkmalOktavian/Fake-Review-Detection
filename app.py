@@ -264,42 +264,6 @@ def predict(text, model, tokenizer, le, attention_extractor, max_len=150):
 
     return label, confidence, prob, token_weights, clean
 
-# ── Attention Heatmap ──────────────────────────────────────────────────────────
-def render_attention_heatmap(token_weights, is_fake):
-    if not token_weights:
-        st.info("No attention weights available for this input.")
-        return
-
-    sorted_tokens = sorted(token_weights.items(), key=lambda x: x[1], reverse=True)[:20]
-    if not sorted_tokens:
-        return
-
-    tokens_list = [t[0] for t in sorted_tokens]
-    weights_list = [t[1] for t in sorted_tokens]
-
-    base_color = "#e11d48" if is_fake else "#16a34a"
-    fig, ax = plt.subplots(figsize=(8, max(3, len(tokens_list) * 0.35)))
-    fig.patch.set_alpha(0)
-    ax.set_facecolor('none')
-
-    norm_weights = np.array(weights_list)
-    norm_weights = (norm_weights - norm_weights.min()) / (norm_weights.max() - norm_weights.min() + 1e-8)
-
-    bars = ax.barh(tokens_list[::-1], norm_weights[::-1], color=base_color, alpha=0.85)
-    for bar, w in zip(bars, norm_weights[::-1]):
-        bar.set_alpha(0.3 + 0.7 * w)
-
-    ax.set_xlabel("Normalized Attention Weight", fontsize=10, color="#6b7280")
-    ax.tick_params(colors='#374151', labelsize=10)
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['left'].set_color('#e5e7eb')
-    ax.spines['bottom'].set_color('#e5e7eb')
-    ax.xaxis.label.set_color('#6b7280')
-    plt.tight_layout()
-    st.pyplot(fig)
-    plt.close()
-
 # ── Token Highlight HTML ───────────────────────────────────────────────────────
 def render_token_pills(token_weights, is_fake):
     if not token_weights:
