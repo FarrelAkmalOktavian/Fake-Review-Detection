@@ -441,10 +441,6 @@ if analyze_btn:
 
         with tab1:
             render_token_pills(token_weights, is_fake)
-            st.caption("Darker color = higher attention weight")
-
-        with tab2:
-            render_attention_heatmap(token_weights, is_fake)
 
         # Preprocessed text
         with st.expander("View preprocessed text"):
